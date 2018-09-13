@@ -29,6 +29,7 @@ class ConfirmResetPinDialog : AppCompatDialogFragment() {
   @Inject
   lateinit var patientRepository: PatientRepository
 
+
   companion object {
     fun show(fragmentManager: FragmentManager) {
       (fragmentManager.findFragmentByTag("confirm_reset_pin_alert") as ConfirmResetPinDialog?)?.dismiss()
@@ -44,7 +45,6 @@ class ConfirmResetPinDialog : AppCompatDialogFragment() {
     super.onAttach(context)
     TheActivity.component.inject(this)
   }
-
 
   override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
     return AlertDialog.Builder(context!!)
