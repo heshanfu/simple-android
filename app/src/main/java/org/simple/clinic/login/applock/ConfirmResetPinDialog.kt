@@ -29,7 +29,6 @@ class ConfirmResetPinDialog : AppCompatDialogFragment() {
   @Inject
   lateinit var patientRepository: PatientRepository
 
-
   companion object {
     fun show(fragmentManager: FragmentManager) {
       (fragmentManager.findFragmentByTag("confirm_reset_pin_alert") as ConfirmResetPinDialog?)?.dismiss()
