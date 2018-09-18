@@ -8,6 +8,7 @@ import android.view.WindowManager
 import com.f2prateek.rx.preferences2.Preference
 import io.github.inflationx.viewpump.ViewPumpContextWrapper
 import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.ofType
 import org.simple.clinic.BuildConfig
 import org.simple.clinic.ClinicApp
@@ -69,6 +70,7 @@ class TheActivity : AppCompatActivity() {
     lifecycle
         .startWith(TheActivityLifecycle.Started())
         .compose(controller)
+        .observeOn(AndroidSchedulers.mainThread())
         .takeUntil(lifecycle.ofType<TheActivityLifecycle.Destroyed>())
         .subscribe { uiChange -> uiChange(this) }
   }
