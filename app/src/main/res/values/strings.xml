@@ -213,6 +213,9 @@
   <!-- Forgot PIN -->
   <string name="forgotpin_create_new_pin">Create new security PIN</string>
   <string name="forgotpin_create_new_pin_invalid_pin">PIN is too short. Please enter 4 numbers.</string>
+  <string name="forgotpin_confirm_pin">Enter security PIN again</string>
+  <string name="forgotpin_confirm_pin_message">Enter your PIN again to confirm it</string>
+  <string name="forgotpin_error_pin_mismatch">PIN doesn’t match the original PIN</string>
 
   <!-- Reports -->
   <string name="reports_come_back_later">Come back later</string>
