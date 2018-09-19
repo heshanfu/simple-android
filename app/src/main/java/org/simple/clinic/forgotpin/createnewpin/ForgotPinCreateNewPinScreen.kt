@@ -22,6 +22,7 @@ import org.simple.clinic.widgets.StaggeredEditText
 import org.simple.clinic.widgets.UiEvent
 import org.simple.clinic.widgets.hideKeyboard
 import org.simple.clinic.widgets.showKeyboard
+import timber.log.Timber
 import javax.inject.Inject
 
 class ForgotPinCreateNewPinScreen(context: Context, attributeSet: AttributeSet?) : RelativeLayout(context, attributeSet) {
@@ -65,6 +66,8 @@ class ForgotPinCreateNewPinScreen(context: Context, attributeSet: AttributeSet?)
   private fun pinSubmitClicked(): Observable<UiEvent> {
     return RxTextView.editorActions(pinEntryEditText)
         .filter { it == EditorInfo.IME_ACTION_DONE }
+        // TODO: Added for debugging why the submit action gets dropped sometimes. Remove later.
+        .doOnSubscribe { Timber.d("Subscribed to PIN submit clicks!") }
         .map { ForgotPinCreateNewPinSubmitClicked }
   }
 
