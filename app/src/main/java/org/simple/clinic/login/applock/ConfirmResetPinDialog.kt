@@ -3,12 +3,9 @@ package org.simple.clinic.login.applock
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.v4.app.FragmentManager
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatDialogFragment
-import android.view.View
-import io.reactivex.android.schedulers.AndroidSchedulers.mainThread
 import org.simple.clinic.R
 import org.simple.clinic.activity.TheActivity
 import org.simple.clinic.forgotpin.createnewpin.ForgotPinCreateNewPinScreenKey
@@ -50,16 +47,7 @@ class ConfirmResetPinDialog : AppCompatDialogFragment() {
         .setTitle(R.string.applock_reset_pin_alert_title)
         .setMessage(R.string.applock_reset_pin_alert_message)
         .setPositiveButton(R.string.applock_reset_pin_alert_confirm) { _, _ ->
-          val view = dialog.ownerActivity.findViewById<View>(android.R.id.content)
-          val snackbar = Snackbar.make(view, getString(R.string.applock_reset_pin_waiting), Snackbar.LENGTH_INDEFINITE)
-          snackbar.show()
-
-          userSession.startForgotPinFlow(patientRepository, syncRetryCount = 1)
-              .observeOn(mainThread())
-              .doOnTerminate { snackbar.dismiss() }
-              .subscribe {
-                screenRouter.clearHistoryAndPush(ForgotPinCreateNewPinScreenKey(), RouterDirection.REPLACE)
-              }
+          screenRouter.clearHistoryAndPush(ForgotPinCreateNewPinScreenKey(), RouterDirection.REPLACE)
         }
         .setNegativeButton(R.string.applock_reset_pin_alert_cancel, null)
         .create()
