@@ -16,6 +16,10 @@ import org.simple.clinic.patient.Gender
 import org.simple.clinic.widgets.locationRectOnScreen
 import org.simple.clinic.widgets.marginLayoutParams
 import java.util.UUID
+import android.graphics.drawable.Drawable
+import android.support.v4.content.res.ResourcesCompat
+import org.simple.clinic.widgets.setCompoundDrawableStart
+
 
 class OverdueListAdapter(
     private val phoneCallClickStream: PublishSubject<CallPatientClicked>
@@ -98,6 +102,7 @@ class OverdueListViewHolder(
     val context = itemView.context
 
     patientNameTextView.text = context.getString(R.string.overdue_list_item_name_age, appointment.name, appointment.age)
+    patientNameTextView.setCompoundDrawableStart(appointment.gender.displayIconRes)
 
     patientBPTextView.text = context.resources.getQuantityString(
         R.plurals.overdue_list_item_patient_bp,
